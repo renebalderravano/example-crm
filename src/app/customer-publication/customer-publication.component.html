@@ -1,0 +1,210 @@
+<c-row ngPreserveWhitespaces>
+
+    <c-col xs="12">
+      <c-card class="mb-6">
+        <c-card-header>
+          <strong>{{publication?.carName}}</strong> <small></small>
+        </c-card-header>
+        <c-card-body>
+          <p class="text-body-secondary small">
+          </p>
+          <!-- <app-docs-example href="components/card/#image-caps"> -->
+            <c-row   >
+              <c-col lg="7"  >
+                <c-card class="mb-3" >
+                  <ng-container *ngTemplateOutlet="imgAngularTemplate; context: {$implicit: publication?.photo}" />
+                  <c-card-body>
+                    <h5 cCardTitle>{{publication?.carName}}</h5>
+                    <p cCardText>
+                      {{publication?.price | currency}}
+                    </p>
+                    <p></p><p></p><p></p><p></p><p></p><p></p>
+                    <p cCardText>
+                      <small class="text-body-secondary">{{publication?.agency}}</small>
+                    </p>
+                  </c-card-body>
+                </c-card>
+              </c-col>
+              <c-col lg="5">
+
+                <c-row ngPreserveWhitespaces>
+                    <c-col xs="12">
+                      <c-card class="mb-12">
+                        <c-card-header>
+                          <strong>Cotizar online</strong>
+                        </c-card-header>
+                        <c-card-body>
+                            <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+                                <input type="hidden" name="id" formControlName="id">
+                            
+                                <div class="container" *ngIf="!isEdit">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label for="name">Nombre: </label>
+                                            <input id="name" type="text" formControlName="name">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label for="city">Ciudad: </label>
+                                            <input id="city" type="text" formControlName="city">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label for="state">Estado: </label>
+                                            <input id="state" type="text" formControlName="state">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label for="cellphone">Celular: </label>
+                                            <input id="cellphone" type="text" formControlName="cellphone">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label for="email">Email: </label>
+                                            <input id="email" type="email" formControlName="email">
+                                        </div>
+                                    </div>
+                            
+                                    <div class="row">
+                                        <div class="col-sm-12 btn-primary" style="justify-content: flex-end; align-items: flex-end;">
+                                            <br>
+                                            <button class="btn btn-primary" type="submit">Cotizar Online</button>
+                                        </div>
+                                    </div>
+                            
+                                </div>
+                            
+                                <div class="container" *ngIf="isEdit">
+                                    <div class="row">
+                                     
+                                        <div class="col-sm-12">
+                            
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="name">Nombre: </label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <h3>{{customerForm.get('name')?.value}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="city">Ciudad: </label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <h3> {{customerForm.get('city')?.value}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="state">Estado: </label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <h3> {{customerForm.get('state')?.value}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="cellphone">Celular: </label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <h3> {{customerForm.get('cellphone')?.value}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="email">Email: </label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <h3> {{customerForm.get('email')?.value}}</h3>
+                                                </div>
+                                            </div>
+                            
+                                            <link rel="stylesheet"
+                                                href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+                                            <a href="mailto:{{ customerForm.get('email')?.value}}" class="float2" target="_blank">
+                                                <i class="fa fa-envelope-o my-float"></i>
+                                            </a>
+                                            <link rel="stylesheet"
+                                                href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+                                            <a href="https://api.whatsapp.com/send?phone={{ customerForm.get('cellphone')?.value}}&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202."
+                                                class="float" target="_blank">
+                                                <i class="fa fa-whatsapp my-float"></i>
+                                            </a>
+                                            <br><br><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </form>
+                        </c-card-body>
+                      </c-card>
+                    </c-col>
+                  
+                  </c-row>
+                  
+                  
+                <!-- <c-card class="mb-3">
+                  <c-card-body>
+                    <h5 cCardTitle>Card title</h5>
+                    <p cCardText>
+                      This is a wider card with supporting text below as a natural lead-in to
+                      additional content. This content is a little bit longer.
+                    </p>
+                    <p cCardText>
+                      <small class="text-body-secondary">Last updated 3 mins ago</small>
+                    </p>
+                  </c-card-body>
+                  <ng-container *ngTemplateOutlet="imgAngularTemplate; context: {$implicit: 'https://automotive-api.s3.us-east-2.amazonaws.com/news/d3e0571f-fa9e-4061-9d3b-ebdedb25dbfd/1.jpg'}" />
+                </c-card> -->
+              </c-col>
+            </c-row>
+          <!-- </app-docs-example> -->
+        </c-card-body>
+      </c-card>
+    </c-col>
+   
+  </c-row>
+  
+  <ng-template #imgAngularTemplate let-orientation>
+    <img [cCardImg]="'top'" [src]="orientation ?? 'assets/images/angular.jpg'">
+  </ng-template>
+  
+  <ng-template #imgPlaceholderTemplate let-orientation>
+    <svg
+      [cCardImg]="orientation ?? 'top'"
+      aria-label="Placeholder: Image cap"
+      class="docs-placeholder-img"
+      focusable="false"
+      height="180"
+      preserveAspectRatio="xMidYMid slice"
+      role="img"
+      width="100%"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title>Placeholder</title>
+      <rect fill="#868e96" height="100%" width="100%"></rect>
+      <text dominant-baseline="middle" dy=".3em" fill="#dee2e6" text-anchor="middle" x="50%" y="50%">Image cap</text>
+    </svg>
+  </ng-template>
+  
+  <ng-template #cardBodyTemplate>
+    <h5 cCardTitle>Card title</h5>
+    <p cCardText>
+      Some quick example text to build on the card title and make up the bulk of the card's content.
+    </p>
+    <button cButton color="primary">Go somewhere</button>
+  </ng-template>
+  
+  <ng-template #headerAndFooterTemplate>
+    <h5 cCardTitle>Special title treatment</h5>
+    <p cCardText>
+      With supporting text below as a natural lead-in to additional content.
+    </p>
+    <button cButton color="primary">Go somewhere</button>
+  </ng-template>
+  
