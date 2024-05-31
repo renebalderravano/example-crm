@@ -69,11 +69,18 @@ export class PublicationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.publicationService.getPublication().subscribe(
-      (data:any)=>{
-        this.publicationList = this.filteredpublicationList= data
-      }
-    )
+
+    setTimeout(() => {
+      this.publicationService.getPublication().subscribe(
+        (data:any)=>{
+          this.publicationList = this.filteredpublicationList= data
+        },
+        error=>{
+          console.log("error ->" + error);       
+        }
+      )
+    }, 1000);
+ 
   }
 
   

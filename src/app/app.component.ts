@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from './icons/icon-subset';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private titleService: Title,
-    private iconSetService: IconSetService
+    private iconSetService: IconSetService,
+    private appService: AppService
   ) {
     this.titleService.setTitle(this.title);
     // iconSet singleton
